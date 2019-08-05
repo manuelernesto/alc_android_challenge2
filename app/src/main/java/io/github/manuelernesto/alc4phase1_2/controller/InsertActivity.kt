@@ -11,6 +11,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import io.github.manuelernesto.alc4phase1_2.R
 import io.github.manuelernesto.alc4phase1_2.model.TravelDeals
+import io.github.manuelernesto.alc4phase1_2.util.FirebaseUtil
 
 class InsertActivity : AppCompatActivity() {
 
@@ -44,8 +45,9 @@ class InsertActivity : AppCompatActivity() {
     }
 
     private fun setUI() {
-        mFirebaseDatabase = FirebaseDatabase.getInstance()
-        mDatabaseReference = mFirebaseDatabase.reference.child("traveldeals")
+        FirebaseUtil.openFbReference("traveldeals")
+        mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase
+        mDatabaseReference = FirebaseUtil.mDatabaseReference
 
         mtxtTitle = findViewById(R.id.txtTitle)
         mtxtPrice = findViewById(R.id.txtPrice)

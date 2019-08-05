@@ -2,4 +2,6 @@
 <resources>
     <dimen name="text_margin_standard">16dp</dimen>
     <dimen name="text_margin_large">8dp</dimen>
+    <dimen name="title_large">24sp</dimen>
+    <dimen name="price_size">18sp</dimen>
 </resources>
