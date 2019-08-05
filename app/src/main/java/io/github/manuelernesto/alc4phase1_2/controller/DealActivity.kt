@@ -10,10 +10,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.view.isVisible
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -27,6 +24,7 @@ class DealActivity : AppCompatActivity() {
 
     private lateinit var mFirebaseDatabase: FirebaseDatabase
     private lateinit var mDatabaseReference: DatabaseReference
+    private lateinit var mProgressBar: ProgressBar
 
     private lateinit var mtxtTitle: EditText
     private lateinit var mtxtPrice: EditText
@@ -102,6 +100,7 @@ class DealActivity : AppCompatActivity() {
         mtxtDescription = findViewById(R.id.txtDescription)
         mBtnUpload = findViewById(R.id.btnImage)
         mImg = findViewById(R.id.image)
+        mProgressBar =  findViewById(R.id.progressBar)
     }
 
     private fun saveDeal() {
@@ -175,6 +174,7 @@ class DealActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        mProgressBar.visibility =  ProgressBar.VISIBLE
         if (requestCode == PICTURE_RESULT && resultCode == RESULT_OK) {
             val imageUri: Uri = data?.data!!
             val ref: StorageReference = FirebaseUtil.mStorageRef.child(imageUri.lastPathSegment!!)
@@ -185,6 +185,7 @@ class DealActivity : AppCompatActivity() {
                     mTravelDeals.imageUrl = url
                     mTravelDeals.imageName = picName
                     showImage(url)
+                    mProgressBar.visibility =  ProgressBar.GONE
                 }
             }
         }

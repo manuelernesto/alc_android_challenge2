@@ -27,7 +27,6 @@ class ListActivity : AppCompatActivity() {
         inflater.inflate(R.menu.list_activity_menu, menu)
         val addMenu: MenuItem = menu!!.findItem(R.id.add_travel_deal)
         addMenu.isVisible = FirebaseUtil.isAdmin
-
         return true
     }
 
