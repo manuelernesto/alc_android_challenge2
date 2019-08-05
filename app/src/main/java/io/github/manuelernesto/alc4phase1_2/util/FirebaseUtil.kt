@@ -40,7 +40,7 @@ class FirebaseUtil {
                 caller = callerActivity
                 mAuthListener = FirebaseAuth.AuthStateListener {
                     if (it.currentUser == null) {
-                        signIn(callerActivity)
+                        signIn()
                     } else {
                         val uid = it.uid
                         checkAdmin(uid)
@@ -86,13 +86,11 @@ class FirebaseUtil {
             mAuth.removeAuthStateListener(mAuthListener)
         }
 
-        fun signIn(callerActivity: ListActivity) {
+        fun signIn() {
             val providers = arrayListOf(
                 AuthUI.IdpConfig.EmailBuilder().build(),
                 AuthUI.IdpConfig.GoogleBuilder().build()
             )
-
-            caller = callerActivity
 
             caller?.startActivityForResult(
                 AuthUI.getInstance()
