@@ -6,4 +6,8 @@
         android:icon="@drawable/ic_add"
         android:title="@string/add_travel_deal"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/logout_menu"
+        android:title="@string/logout"
+        app:showAsAction="never" />
 </menu>

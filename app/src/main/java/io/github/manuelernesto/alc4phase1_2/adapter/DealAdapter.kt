@@ -1,5 +1,6 @@
 package io.github.manuelernesto.alc4phase1_2.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,10 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import io.github.manuelernesto.alc4phase1_2.R
 import io.github.manuelernesto.alc4phase1_2.controller.DealActivity
+import io.github.manuelernesto.alc4phase1_2.controller.ListActivity
 import io.github.manuelernesto.alc4phase1_2.model.TravelDeals
 import io.github.manuelernesto.alc4phase1_2.util.FirebaseUtil
 
-class DealAdapter : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
+class DealAdapter(val activity: ListActivity) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
 
     var deals: ArrayList<TravelDeals>
     private var mFirebaseDatabase: FirebaseDatabase
@@ -22,7 +24,7 @@ class DealAdapter : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
     private var mChildListener: ChildEventListener
 
     init {
-        FirebaseUtil.openFbReference("traveldeals")
+        FirebaseUtil.openFbReference("traveldeals", activity)
         mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase
         mDatabaseReference = FirebaseUtil.mDatabaseReference
         deals = FirebaseUtil.mDeals

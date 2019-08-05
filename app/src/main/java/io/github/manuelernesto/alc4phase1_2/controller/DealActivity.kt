@@ -45,6 +45,14 @@ class DealActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.save_menu, menu)
+
+        val saveMenu: MenuItem = menu!!.findItem(R.id.save_menu)
+        val deleteMenu: MenuItem = menu.findItem(R.id.delete_deal)
+
+        saveMenu.isVisible = FirebaseUtil.isAdmin
+        deleteMenu.isVisible = FirebaseUtil.isAdmin
+        enanbleEditText(FirebaseUtil.isAdmin)
+
         return true
     }
 
@@ -69,7 +77,7 @@ class DealActivity : AppCompatActivity() {
     }
 
     private fun setUI() {
-        FirebaseUtil.openFbReference("traveldeals")
+        FirebaseUtil.openFbReference("traveldeals", ListActivity::class.java.newInstance())
         mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase
         mDatabaseReference = FirebaseUtil.mDatabaseReference
 
@@ -113,6 +121,12 @@ class DealActivity : AppCompatActivity() {
 
     private fun backToList() {
         startActivity(Intent(this@DealActivity, ListActivity::class.java))
+    }
+
+    private fun enanbleEditText(isEnabled: Boolean) {
+        mtxtTitle.isEnabled = isEnabled
+        mtxtPrice.isEnabled = isEnabled
+        mtxtDescription.isEnabled = isEnabled
     }
 
 }
