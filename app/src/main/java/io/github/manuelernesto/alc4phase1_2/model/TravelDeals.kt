@@ -4,8 +4,8 @@ import java.io.Serializable
 
 data class TravelDeals(
     var id: String? = null,
-    val title: String? = null,
-    val descripton: String? = null,
-    val price: String? = null,
-    val imageUrl: String? = null
+    var title: String? = null,
+    var descripton: String? = null,
+    var price: String? = null,
+    var imageUrl: String? = null
 ) : Serializable

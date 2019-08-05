@@ -1,5 +1,6 @@
 package io.github.manuelernesto.alc4phase1_2.adapter
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import io.github.manuelernesto.alc4phase1_2.R
+import io.github.manuelernesto.alc4phase1_2.controller.DealActivity
 import io.github.manuelernesto.alc4phase1_2.model.TravelDeals
 import io.github.manuelernesto.alc4phase1_2.util.FirebaseUtil
 
 class DealAdapter : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
 
-    private var deals: ArrayList<TravelDeals>
+    var deals: ArrayList<TravelDeals>
     private var mFirebaseDatabase: FirebaseDatabase
     private var mDatabaseReference: DatabaseReference
     private var mChildListener: ChildEventListener
@@ -25,17 +27,11 @@ class DealAdapter : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
         mDatabaseReference = FirebaseUtil.mDatabaseReference
         deals = FirebaseUtil.mDeals
         val childEventListener = object : ChildEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onCancelled(p0: DatabaseError) {}
 
-            override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
 
-            override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
 
             override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                 val td = dataSnapshot.getValue(TravelDeals::class.java)
@@ -47,9 +43,7 @@ class DealAdapter : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
 
             }
 
-            override fun onChildRemoved(dataSnapshot: DataSnapshot) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+            override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
 
         }
         mChildListener = childEventListener
@@ -69,7 +63,9 @@ class DealAdapter : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
     }
 
 
-    class DealViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class DealViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
+
         var tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         var tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
         var tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
@@ -78,6 +74,18 @@ class DealAdapter : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
             tvTitle.text = deal.title
             tvPrice.text = deal.price
             tvDescription.text = deal.descripton
+        }
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(v: View?) {
+            val position = adapterPosition
+            val selectedDeal = deals[position]
+            val intent = Intent(itemView.context, DealActivity::class.java)
+            intent.putExtra("Deal", selectedDeal)
+            itemView.context.startActivity(intent)
         }
     }
 }
