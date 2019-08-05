@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ALC4Phase1-2</string>
+    <string name="title_hint">Deal Title</string>
+    <string name="price_hint">Price(Numbers only)</string>
+    <string name="description_hiont">Description</string>
+    <string name="save_menu">save</string>
 </resources>

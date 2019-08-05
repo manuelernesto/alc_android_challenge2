@@ -1,7 +1,8 @@
-package io.github.manuelernesto.alc4phase1_2
+package io.github.manuelernesto.alc4phase1_2.controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import io.github.manuelernesto.alc4phase1_2.R
 
 class MainActivity : AppCompatActivity() {
 
