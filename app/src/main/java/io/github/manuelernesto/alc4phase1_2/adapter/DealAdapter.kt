@@ -18,7 +18,7 @@ import io.github.manuelernesto.alc4phase1_2.controller.ListActivity
 import io.github.manuelernesto.alc4phase1_2.model.TravelDeals
 import io.github.manuelernesto.alc4phase1_2.util.FirebaseUtil
 
-class DealAdapter(val activity: ListActivity) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
+class DealAdapter(activity: ListActivity) : RecyclerView.Adapter<DealAdapter.DealViewHolder>() {
 
     var deals: ArrayList<TravelDeals>
     private var mFirebaseDatabase: FirebaseDatabase
@@ -74,6 +74,7 @@ class DealAdapter(val activity: ListActivity) : RecyclerView.Adapter<DealAdapter
         var tvPrice: TextView = itemView.findViewById(R.id.tvPrice)
         var tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
         var imgDeal: ImageView = itemView.findViewById(R.id.imageDeal)
+
         fun bind(deal: TravelDeals) {
             tvTitle.text = deal.title
             tvPrice.text = deal.price

@@ -129,8 +129,7 @@ class DealActivity : AppCompatActivity() {
         else {
             mDatabaseReference.child(mTravelDeals.id.toString()).removeValue()
             if (mTravelDeals.imageName != null && mTravelDeals.imageName!!.isNotEmpty()) {
-                val picRef = FirebaseUtil.mStorageRef
-                    .child(mTravelDeals.imageName!!)
+                val picRef = FirebaseUtil.mStorage.getReferenceFromUrl(mTravelDeals.imageUrl!!)
                 picRef.delete().addOnSuccessListener {
 
                 }
