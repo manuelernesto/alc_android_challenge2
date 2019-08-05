@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ALC4Phase1-2</string>
+    <string name="app_name">Travelmantics</string>
     <string name="title_hint">Deal Title</string>
     <string name="price_hint">Price(Numbers only)</string>
     <string name="description_hiont">Description</string>
@@ -7,4 +7,5 @@
     <string name="add_travel_deal">Add Travel Deal</string>
     <string name="delete_deal">Delete Deal</string>
     <string name="logout">Logout</string>
+    <string name="upload">Upload Image</string>
 </resources>

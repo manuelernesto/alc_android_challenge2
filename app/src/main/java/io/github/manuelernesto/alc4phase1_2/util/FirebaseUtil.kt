@@ -5,18 +5,28 @@ import android.widget.Toast
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import io.github.manuelernesto.alc4phase1_2.controller.ListActivity
 import io.github.manuelernesto.alc4phase1_2.model.TravelDeals
 
 class FirebaseUtil {
     companion object {
         lateinit var mDeals: ArrayList<TravelDeals>
+
         lateinit var mFirebaseDatabase: FirebaseDatabase
         lateinit var mDatabaseReference: DatabaseReference
+
         lateinit var mAuth: FirebaseAuth
         lateinit var mAuthListener: FirebaseAuth.AuthStateListener
+
+        lateinit var mStorage: FirebaseStorage
+        lateinit var mStorageRef: StorageReference
+
         private var caller: ListActivity? = null
+
         var firebaseUtil: FirebaseUtil? = null
+
         var isAdmin: Boolean = false
 
         val RC_SIGN_IN = 123
@@ -41,6 +51,7 @@ class FirebaseUtil {
                     ).show()
 
                 }
+                connectStorage()
             }
             mDeals = ArrayList()
             mDatabaseReference = mFirebaseDatabase.reference.child(ref)
@@ -90,6 +101,11 @@ class FirebaseUtil {
                     .build(),
                 RC_SIGN_IN
             )
+        }
+
+        fun connectStorage() {
+            mStorage = FirebaseStorage.getInstance()
+            mStorageRef = mStorage.reference.child("deals_picture")
         }
     }
 

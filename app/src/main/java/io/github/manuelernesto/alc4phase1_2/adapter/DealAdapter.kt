@@ -2,6 +2,7 @@ package io.github.manuelernesto.alc4phase1_2.adapter
 
 import android.app.Activity
 import android.content.Intent
+import android.content.res.Resources
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import io.github.manuelernesto.alc4phase1_2.R
 import io.github.manuelernesto.alc4phase1_2.controller.DealActivity
 import io.github.manuelernesto.alc4phase1_2.controller.ListActivity
@@ -76,6 +78,18 @@ class DealAdapter(val activity: ListActivity) : RecyclerView.Adapter<DealAdapter
             tvTitle.text = deal.title
             tvPrice.text = deal.price
             tvDescription.text = deal.descripton
+            showImage(deal.imageUrl!!)
+        }
+
+        private fun showImage(url: String) {
+            if (url.isNotEmpty()) {
+                Picasso
+                    .get()
+                    .load(url)
+                    .resize(160, 160)
+                    .centerCrop()
+                    .into(imgDeal)
+            }
         }
 
         init {

@@ -21,7 +21,6 @@ class ListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_list)
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.list_activity_menu, menu)
